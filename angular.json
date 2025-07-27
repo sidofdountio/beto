@@ -9,6 +9,13 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "fr": "src/locale/messages.fr.xlf"
+        }
+      },
+
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -16,10 +23,9 @@
             "outputPath": "dist/beto",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js", "@angular/localize/init"],
             "tsConfig": "tsconfig.app.json",
+            "localize": true,
             "assets": [
               {
                 "glob": "**/*",
@@ -28,9 +34,11 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -51,7 +59,13 @@
                   "maximumError": "4kB"
                 }
               ],
+              "localize": ["en", "fr"],
               "outputHashing": "all"
+            },
+            "fr": {
+              "localize": ["fr"],
+              "outputPath": "dist/beto-fr",
+              "baseHref": "/fr/"
             },
             "development": {
               "optimization": false,
@@ -69,6 +83,9 @@
             },
             "development": {
               "buildTarget": "beto:build:development"
+            },
+            "fr": {
+              "browserTarget": "beto:build:fr"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +98,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
@@ -92,9 +110,10 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.css"
+              "src/styles.css",
+              "/node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
           }
         }
       }

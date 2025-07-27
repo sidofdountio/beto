@@ -1,0 +1,5 @@
+.card-img-galery-top {
+  height: 250px; /* or any value you prefer */
+  object-fit: cover;
+  width: 100%;
+}
