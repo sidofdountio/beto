@@ -9,12 +9,7 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
-      "i18n": {
-        "sourceLocale": "en",
-        "locales": {
-          "fr": "src/locale/messages.fr.xlf"
-        }
-      },
+      
 
       "architect": {
         "build": {
@@ -23,9 +18,8 @@
             "outputPath": "dist/beto",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": ["zone.js", "@angular/localize/init"],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "localize": true,
             "assets": [
               {
                 "glob": "**/*",
@@ -59,14 +53,9 @@
                   "maximumError": "4kB"
                 }
               ],
-              "localize": ["en", "fr"],
               "outputHashing": "all"
             },
-            "fr": {
-              "localize": ["fr"],
-              "outputPath": "dist/beto-fr",
-              "baseHref": "/fr/"
-            },
+          
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -83,23 +72,18 @@
             },
             "development": {
               "buildTarget": "beto:build:development"
-            },
-            "fr": {
-              "browserTarget": "beto:build:fr"
             }
+           
           },
           "defaultConfiguration": "development"
         },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
-        },
+      
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing",
-              "@angular/localize/init"
+              "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
